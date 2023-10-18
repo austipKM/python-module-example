@@ -37,4 +37,5 @@ def template_factory(template_type: TemplateType) -> BaseTemplate:
     elif template_type == TemplateType.TEMPLATE_2.value:
         return Template2()
     else:
-        raise ValueError(f'Unknown template type: {template_type}')
+        raise ValueError(
+            f'Unknown template type. Valid template types are: {", ".join([t.value for t in TemplateType])}')
