@@ -12,14 +12,15 @@ from .template1 import Template1
 from .template2 import Template2
 from .base_template import BaseTemplate
 from enum import Enum
+from typing import Literal
 
 
-class TemplateType(Enum):
+class Templates(Enum):
     TEMPLATE_1 = 'template1'
     TEMPLATE_2 = 'template2'
 
 
-def template_factory(template_type: TemplateType) -> BaseTemplate:
+def template_factory(template_type: Literal['template1', 'template2']) -> BaseTemplate:
     """Returns an instance of the specified template_type
 
     Args:
@@ -32,10 +33,10 @@ def template_factory(template_type: TemplateType) -> BaseTemplate:
         _type_: ModuleType, which represents a module/python script
     """
 
-    if template_type == TemplateType.TEMPLATE_1.value:
+    if template_type == Templates.TEMPLATE_1.value:
         return Template1()
-    elif template_type == TemplateType.TEMPLATE_2.value:
+    elif template_type == Templates.TEMPLATE_2.value:
         return Template2()
     else:
         raise ValueError(
-            f'Unknown template type. Valid template types are: {", ".join([t.value for t in TemplateType])}')
+            f'Unknown template type. Valid template types are: {", ".join([t.value for t in Templates])}')
